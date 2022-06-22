@@ -46,7 +46,7 @@ class Renderer:
         filename = str(uuid.uuid4()) + '.png'
         self.hti.screenshot(html_str=html, css_str=css, save_as=filename, size=size)
 
-        with open(f"{filename}.txt", "w") as debug_f:
+        with open(f"{filename}.txt", "w", encoding="utf8") as debug_f:
             debug_f.writelines([f"{l}\n" for l in lines])
 
         img = cv2.imread(filename, cv2.IMREAD_UNCHANGED)

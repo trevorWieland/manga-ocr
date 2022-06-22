@@ -40,6 +40,7 @@ class SyntheticDataGenerator:
             words = self.get_random_words(vocab)
 
         else:
+            text = str(text)
             text = text.replace('　', ' ')
             text = text.replace('…', '...')
             words = self.split_into_words(text)
