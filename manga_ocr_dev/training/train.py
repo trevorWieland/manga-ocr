@@ -2,6 +2,8 @@ import fire
 import wandb
 from transformers import Seq2SeqTrainer, Seq2SeqTrainingArguments, default_data_collator
 
+import sys
+sys.path.append("C:/Users/trevo/Documents/GitHub/manga-ocr")
 from manga_ocr_dev.env import TRAIN_ROOT
 from manga_ocr_dev.training.dataset import MangaDataset
 from manga_ocr_dev.training.get_model import get_model

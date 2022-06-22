@@ -6,6 +6,8 @@ import pandas as pd
 import torch
 from torch.utils.data import Dataset
 
+import sys
+sys.path.append("C:/Users/trevo/Documents/GitHub/manga-ocr")
 from manga_ocr_dev.env import MANGA109_ROOT, DATA_SYNTHETIC_ROOT
 
 
