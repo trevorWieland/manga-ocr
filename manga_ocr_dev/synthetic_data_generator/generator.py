@@ -85,7 +85,7 @@ class SyntheticDataGenerator:
         return words
 
     def split_into_words(self, text):
-        max_text_len = np.random.choice(self.len_to_p.len, p=self.len_to_p.p)
+        max_text_len = len(text)#np.random.choice(self.len_to_p.len, p=self.len_to_p.p)
 
         words = []
         text_len = 0
