@@ -6,6 +6,8 @@ import fire
 import pandas as pd
 from tqdm.contrib.concurrent import thread_map
 
+import sys
+sys.path.append("C:/Users/trevo/Documents/GitHub/manga-ocr")
 from manga_ocr_dev.env import FONTS_ROOT, DATA_SYNTHETIC_ROOT
 from manga_ocr_dev.synthetic_data_generator.generator import SyntheticDataGenerator
 
@@ -37,7 +39,7 @@ def run(package=0, n_random=1000, n_limit=None, max_workers=16):
     """
 
     package = f'{package:04d}'
-    lines = pd.read_csv(DATA_SYNTHETIC_ROOT / f'lines/{package}.csv')
+    lines = pd.read_csv(DATA_SYNTHETIC_ROOT / f'lines/{package}.csv', sep="\t")
     random_lines = pd.DataFrame({
         'source': 'random',
         'id': [f'random_{package}_{i}' for i in range(n_random)],

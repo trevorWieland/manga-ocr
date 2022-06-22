@@ -2,6 +2,8 @@ import budou
 import numpy as np
 import pandas as pd
 
+import sys
+sys.path.append("C:/Users/trevo/Documents/GitHub/manga-ocr")
 from manga_ocr_dev.env import ASSETS_PATH, FONTS_ROOT
 from manga_ocr_dev.synthetic_data_generator.renderer import Renderer
 from manga_ocr_dev.synthetic_data_generator.utils import get_font_meta, get_charsets, is_ascii, is_kanji
@@ -53,15 +55,16 @@ class SyntheticDataGenerator:
             vocab = self.font_map.get(font_path)
 
             # remove unsupported characters
-            lines = [''.join([c for c in line if c in vocab]) for line in lines]
+            lines = [''.join([c for c in line if (c in vocab) or (c == " ")]) for line in lines]
             text_gt = '\n'.join(lines)
         else:
             vocab = None
 
-        if np.random.random() < 0.5:
-            word_prob = np.random.choice([0.33, 1.0], p=[0.3, 0.7])
-
-            lines = [self.add_random_furigana(line, word_prob, vocab) for line in lines]
+        #
+        #if np.random.random() < 0.5:
+        #    word_prob = np.random.choice([0.33, 1.0], p=[0.3, 0.7])
+        #
+        #    lines = [self.add_random_furigana(line, word_prob, vocab) for line in lines]
 
         img, params = self.renderer.render(lines, override_css_params)
         return img, text_gt, params
@@ -86,16 +89,16 @@ class SyntheticDataGenerator:
 
         words = []
         text_len = 0
-        for chunk in self.parser.parse(text)['chunks']:
-            words.append(chunk.word)
-            text_len += len(chunk.word)
-            if text_len + len(chunk.word) >= max_text_len:
+        for chunk in text.split(): #self.parser.parse(text)['chunks']:
+            words.append(chunk)
+            text_len += len(chunk)
+            if text_len + len(chunk) >= max_text_len:
                 break
 
         return words
 
     def words_to_lines(self, words):
-        text = ''.join(words)
+        text = ' '.join(words)
 
         max_num_lines = 10
         min_line_len = len(text) // max_num_lines
@@ -108,6 +111,8 @@ class SyntheticDataGenerator:
             if len(line) >= max_line_len:
                 lines.append(line)
                 line = ''
+            else:
+                line += " "
         if line:
             lines.append(line)
 

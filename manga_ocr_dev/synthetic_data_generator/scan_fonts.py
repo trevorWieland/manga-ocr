@@ -5,6 +5,8 @@ from PIL import ImageDraw, ImageFont
 from fontTools.ttLib import TTFont
 from tqdm.contrib.concurrent import process_map
 
+import sys
+sys.path.append("C:/Users/trevo/Documents/GitHub/manga-ocr")
 from manga_ocr_dev.env import ASSETS_PATH, FONTS_ROOT
 
 vocab = pd.read_csv(ASSETS_PATH / 'vocab.csv').char.values

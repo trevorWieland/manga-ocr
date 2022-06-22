@@ -5,6 +5,8 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
+import sys
+sys.path.append("C:/Users/trevo/Documents/GitHub/manga-ocr")
 from manga_ocr_dev.env import MANGA109_ROOT, BACKGROUND_DIR
 
 

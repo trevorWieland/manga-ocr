@@ -1,6 +1,8 @@
 import pandas as pd
 import unicodedata
 
+import sys
+sys.path.append("C:/Users/trevo/Documents/GitHub/manga-ocr")
 from manga_ocr_dev.env import ASSETS_PATH, FONTS_ROOT
 
 

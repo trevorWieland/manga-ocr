@@ -6,6 +6,8 @@ import cv2
 import numpy as np
 from html2image import Html2Image
 
+import sys
+sys.path.append("C:/Users/trevo/Documents/GitHub/manga-ocr")
 from manga_ocr_dev.env import BACKGROUND_DIR
 from manga_ocr_dev.synthetic_data_generator.utils import get_background_df
 
@@ -51,14 +53,15 @@ class Renderer:
     def get_random_css_params():
         params = {
             'font_size': 48,
-            'vertical': True if np.random.rand() < 0.7 else False,
+            'vertical': False, #True if np.random.rand() < 0.7 else False,
             'line_height': 0.5,
             'background_color': 'transparent',
             'text_color': 'black',
         }
 
-        if np.random.rand() < 0.7:
-            params['text_orientation'] = 'upright'
+        #if np.random.rand() < 0.7:
+        #    params['text_orientation'] = 'upright'
+        params['text_orientation'] = 'upright'
 
         stroke_variant = np.random.choice(['stroke', 'shadow', 'none'], p=[0.8, 0.15, 0.05])
         if stroke_variant == 'stroke':
